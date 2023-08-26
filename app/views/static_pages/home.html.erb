@@ -1,4 +1,9 @@
 <h1>Welcome to Odin Flickr API App</h1>
+<%= form_tag root_path, method: :get do %>
+  <%= label_tag :flickr_user_id, "Enter Flickr User ID:" %>
+  <%= text_field_tag :flickr_user_id, @user_id %>
+  <%= submit_tag "Show Photos" %>
+<% end %>
 <div>
   <% @photos.each do |photo_url| %>
     <%= image_tag photo_url, alt: "Flickr Photo" %>
