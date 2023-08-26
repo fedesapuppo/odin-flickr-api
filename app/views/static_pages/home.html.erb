@@ -1,0 +1,6 @@
+<h1>Welcome to Odin Flickr API App</h1>
+<div>
+  <% @photos.each do |photo_url| %>
+    <%= image_tag photo_url, alt: "Flickr Photo" %>
+  <% end %>
+</div>
