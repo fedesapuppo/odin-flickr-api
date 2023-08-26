@@ -11,11 +11,15 @@ class StaticPagesController < ApplicationController
     response = Net::HTTP.get(URI.parse(url))
     data = JSON.parse(response)
 
-    @photos = data["photos"]["photo"].map do |photo|
-      server = photo["server"]
-      id = photo["id"]
-      secret = photo["secret"]
-      "https://live.staticflickr.com/#{server}/#{id}_#{secret}.jpg"
+    if data["photos"] && data["photos"]["total"].to_i > 0
+      @photos = data["photos"]["photo"].map do |photo|
+        server = photo["server"]
+        id = photo["id"]
+        secret = photo["secret"]
+        "https://live.staticflickr.com/#{server}/#{id}_#{secret}.jpg"
+      end
+    else
+      @no_photos_found = true
     end
   end
 end
