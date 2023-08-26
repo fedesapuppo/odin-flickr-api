@@ -5,7 +5,7 @@ class StaticPagesController < ApplicationController
   def home
     @user_id = params[:flickr_user_id] || "199013012@N03"
 
-    api_key = "16823c3b0d0b17fbac3c141cb101db23"
+    api_key = ENV["FLICKR_API_KEY"]
     url = "https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=#{api_key}&user_id=#{@user_id}&format=json&nojsoncallback=1"
 
     response = Net::HTTP.get(URI.parse(url))
